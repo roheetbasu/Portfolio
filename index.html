@@ -4,32 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roheet Basukala Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         *{
             margin: 0;
             padding: 0;
         }
-body{
-    background-color:black;
-    color:white;
-    font-family:'Poppins', sans-serif;
+        body{
+            background-color:rgb(0, 0, 0);
+            color:white;
+            font-family:'Poppins', sans-serif;
+                    }
+        nav{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 80px;
             }
+        nav ul{
+            display: flex;
+            justify-content: center;
+
+        }
+        nav ul li{
+            list-style:None;
+            margin:0 23px;
+        }
+                /* NAV LINKS */
+            nav ul li a {
+                text-decoration: none;
+                color: white;
+                font-size: 16px;
+                position: relative;
+                transition: color 0.3s ease;
+            }
+
+            /* Hover color */
+            nav ul li a:hover {
+                color: #8f0202
+            }
+
+            /* Underline animation */
+            nav ul li a::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -6px;
+                width: 0%;
+                height: 2px;
+                background-color: #8f0202;
+                transition: width 0.3s ease;
+            }
+
+            nav ul li a:hover::after {
+                width: 100%;
+            }
+
+            /* Active / selected link */
+            nav ul li a.active {
+                color: #8f0202;
+            }
+
+            nav ul li a.active::after {
+                width: 100%;
+                background-color: #8f0202;
+            }
+            .left{
+            font-size:2rem;
+        }
+        .firstSection{
+            display: flex;
+            justify-content: space-around;
+            margin: 23px 0;
+        }
+        .firstSection div{
+            width:30%
+        }
+        .leftSection{
+            background-color: blue ;
+        }
+
+        .rightSection{
+            background-color: blue;
+        }
     </style>
 </head>
 <body>
     <header>
         <nav>
-            <div class="left">Roheet's Portfolio</div>
+            <div class="left"><span style="color: #8f0202;">Roheet's Portfolio</span></div>
             <div class="right">
                 <ul>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Project</li>
-                    <li>Contact Us</li>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Project</a></li>
+                <li><a href="#">Contact Us</a></li>
                 </ul>
 
             </div>
         </nav>
     </header>
+    <main>
+        <section class="firstSection">
+            <div class="leftSection">Hi, It's Roheet</div>
+            <div class="rightSection">right</div>
+        </section>
+    </main>
 </body>
 </html>
