@@ -73,23 +73,25 @@
                 background-color: #8f0202;
             }
             .left{
-            font-size:2rem;
+            font-size:1.5rem;
         }
         .firstSection{
             display: flex;
             justify-content: space-around;
-            margin: 23px 0;
+            margin: 90px 0;
         }
         .firstSection div{
             width:30%
         }
         .leftSection{
-            background-color: blue ;
+            font-size: 2rem;
+        }
+        .rightSection img {
+            width: 100%; /* image fills the div */
+            height: auto; /* maintains aspect ratio */
+            display: block; /* removes inline spacing issues */
         }
 
-        .rightSection{
-            background-color: blue;
-        }
     </style>
 </head>
 <body>
@@ -99,9 +101,7 @@
             <div class="right">
                 <ul>
                 <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">About</a></li>
                 <li><a href="#">Project</a></li>
-                <li><a href="#">Contact Us</a></li>
                 </ul>
 
             </div>
@@ -109,8 +109,12 @@
     </header>
     <main>
         <section class="firstSection">
-            <div class="leftSection">Hi, It's Roheet</div>
-            <div class="rightSection">right</div>
+            <div class="leftSection"> Hi, My name is <span style="color: #8f0202;"> Roheet Basukala</span> 
+                and I am passionate about learning AI</div>
+            
+                <div class="rightSection">
+                <img src="images/bg.png">
+            </div>
         </section>
     </main>
 </body>
