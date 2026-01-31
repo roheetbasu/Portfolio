@@ -23,6 +23,11 @@
             justify-content: space-around;
             align-items: center;
             height: 80px;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: black;
             }
         nav ul{
             display: flex;
@@ -79,6 +84,8 @@
             display: flex;
             justify-content: space-around;
             margin: 90px 0;
+
+            min-height: calc(100vh - 80px); /* full screen minus navbar */
         }
         .firstSection div{
             width:30%
@@ -91,6 +98,99 @@
             height: auto; /* maintains aspect ratio */
             display: block; /* removes inline spacing issues */
         }
+        .projectsSection {
+            padding: 80px 10%;
+        }
+
+        .sectionTitle {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .projectsGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .projectCard {
+            background-color: #111;
+            padding: 25px;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .projectCard:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(143, 2, 2, 0.4);
+        }
+
+        .projectCard h3 {
+            color: #8f0202;
+            margin-bottom: 12px;
+        }
+
+        .projectCard p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .projectCard a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            border-bottom: 2px solid #8f0202;
+            padding-bottom: 3px;
+        }
+
+        .projectCard a:hover {
+            color: #8f0202;
+        }
+
+        .contactSection {
+            padding: 80px 10%;
+        }
+
+        .contactGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .contactCard {
+            background-color: #111;
+            padding: 25px;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contactCard:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(143, 2, 2, 0.4);
+        }
+
+        .contactCard h3 {
+            color: #8f0202;
+            margin-bottom: 10px;
+        }
+
+        .contactCard p, .contactCard a {
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .contactCard a {
+            text-decoration: none;
+            border-bottom: 2px solid #8f0202;
+        }
+
+        .contactCard a:hover {
+            color: #8f0202;
+        }
+
+
 
     </style>
 </head>
@@ -101,7 +201,8 @@
             <div class="right">
                 <ul>
                 <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Project</a></li>
+                <li><a href="#projects">Project</a></li>
+                <li><a href="#contact">Contact Me</a></li>
                 </ul>
 
             </div>
@@ -110,12 +211,72 @@
     <main>
         <section class="firstSection">
             <div class="leftSection"> Hi, My name is <span style="color: #8f0202;"> Roheet Basukala</span> 
-                and I am passionate about learning AI</div>
+                and I am passionate about 
+                <span id="element" style="color: #8f0202;"></span>
+            </div>
             
                 <div class="rightSection">
                 <img src="images/bg.png">
             </div>
         </section>
+        <section class="projectsSection" id="projects">
+        <h2 class="sectionTitle">Project</h2>
+
+        <div class="projectsGrid">
+
+            <div class="projectCard">
+                <h3>Nepali POS Tagger</h3>
+                <p>BERT based Nepali POS tagger</p>
+                <a href="https://github.com/roheetbasu/Nepali-POS-tagger" target="_blank">
+                    View on GitHub →
+                </a>
+            </div>
+
+            <div class="projectCard">
+                <h3>Fake News Classification</h3>
+                <p>BERT based Fake news classification using dataset from kaggle</p>
+                <a href="https://github.com/roheetbasu/Fake-news-classification" target="_blank">
+                    View on GitHub →
+                </a>
+            </div>
+
+            <div class="projectCard">
+                <h3>Building Transformer From Scratch</h3>
+                <p>Transformer built by using pytorch</p>
+                <a href="https://github.com/roheetbasu/Building-and-Training-Transformer-From-Scratch-/branches" target="_blank">
+                    View on GitHub →
+                </a>
+            </div>
+
+        </div>
+    </section>
+    <section class="contactSection" id="contact">
+        <h2 class="sectionTitle">Contact Me</h2>
+
+        <div class="contactGrid">
+            <div class="contactCard">
+                <h3>Email</h3>
+                <p>You can reach me at:</p>
+                <a href="mailto:roheetbasu@gmail.com">roheetbasu@gmail.com</a>
+            </div>
+
+            <div class="contactCard">
+                <h3>Social</h3>
+                <p>Find me on GitHub:</p>
+                <a href="https://github.com/roheetbasu" target="_blank">https://github.com/roheetbasu</a>
+            </div>
+        </div>
+    </section>
+
     </main>
+    <script src="https://unpkg.com/typed.js@3.0.0/dist/typed.umd.js"></script>
+      <!-- Setup and start animation! -->
+    <script>
+        var typed = new Typed('#element', {
+        strings: ['Learning AI', 'Building Projects'],
+        typeSpeed: 50,
+        loop: true,
+        });
+    </script>
 </body>
 </html>
