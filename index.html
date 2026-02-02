@@ -4,100 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roheet Basukala Portfolio</title>
+
+    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        *{
+        /* ------------------ GLOBAL (SAFE) ------------------ */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        body{
-            background-color:rgb(0, 0, 0);
-            color:white;
-            font-family:'Poppins', sans-serif;
-                    }
-        nav{
+
+        body {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ------------------ NAVBAR (UNCHANGED DESKTOP) ------------------ */
+        nav {
             display: flex;
             justify-content: space-around;
             align-items: center;
             height: 80px;
-
-            position: sticky;
+            width: 100%; /* ✅ add this */
+            position: fixed;
             top: 0;
             z-index: 1000;
             background-color: black;
-            }
-        nav ul{
+        }
+
+
+        nav ul {
             display: flex;
             justify-content: center;
-
         }
-        nav ul li{
-            list-style:None;
-            margin:0 23px;
+
+        nav ul li {
+            list-style: none;
+            margin: 0 23px;
         }
-                /* NAV LINKS */
-            nav ul li a {
-                text-decoration: none;
-                color: white;
-                font-size: 16px;
-                position: relative;
-                transition: color 0.3s ease;
-            }
 
-            /* Hover color */
-            nav ul li a:hover {
-                color: #8f0202
-            }
-
-            /* Underline animation */
-            nav ul li a::after {
-                content: "";
-                position: absolute;
-                left: 0;
-                bottom: -6px;
-                width: 0%;
-                height: 2px;
-                background-color: #8f0202;
-                transition: width 0.3s ease;
-            }
-
-            nav ul li a:hover::after {
-                width: 100%;
-            }
-
-            /* Active / selected link */
-            nav ul li a.active {
-                color: #8f0202;
-            }
-
-            nav ul li a.active::after {
-                width: 100%;
-                background-color: #8f0202;
-            }
-            .left{
-            font-size:1.5rem;
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            position: relative;
+            transition: color 0.3s ease;
         }
-        .firstSection{
+
+        nav ul li a:hover {
+            color: #8f0202;
+        }
+
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0%;
+            height: 2px;
+            background-color: #8f0202;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        nav ul li a.active {
+            color: #8f0202;
+        }
+
+        .left {
+            font-size: 1.5rem;
+        }
+
+        /* ------------------ HERO SECTION (DESKTOP SAME) ------------------ */
+        .firstSection {
             display: flex;
             justify-content: space-around;
+            align-items: center;
             margin: 90px 0;
+            min-height: calc(100vh - 80px);
+        }
 
-            min-height: calc(100vh - 80px); /* full screen minus navbar */
+        .firstSection div {
+            width: 30%;
         }
-        .firstSection div{
-            width:30%
-        }
-        .leftSection{
+
+        .leftSection {
             font-size: 2rem;
+            line-height: 1.4;
         }
+
         .rightSection img {
-            width: 100%; /* image fills the div */
-            height: auto; /* maintains aspect ratio */
-            display: block; /* removes inline spacing issues */
+            width: 100%;
         }
+
+        /* ------------------ PROJECTS ------------------ */
         .projectsSection {
             padding: 80px 10%;
         }
@@ -145,10 +160,7 @@
             padding-bottom: 3px;
         }
 
-        .projectCard a:hover {
-            color: #8f0202;
-        }
-
+        /* ------------------ CONTACT ------------------ */
         .contactSection {
             padding: 80px 10%;
         }
@@ -176,80 +188,107 @@
             margin-bottom: 10px;
         }
 
-        .contactCard p, .contactCard a {
-            margin-bottom: 8px;
-            color: white;
-        }
-
         .contactCard a {
             text-decoration: none;
+            color: white;
             border-bottom: 2px solid #8f0202;
         }
 
-        .contactCard a:hover {
-            color: #8f0202;
+        /* ------------------ MOBILE ONLY (NO DESKTOP IMPACT) ------------------ */
+        @media (max-width: 768px) {
+
+            nav {
+                flex-direction: column;
+                height: auto;
+                padding: 10px 0;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .firstSection {
+                flex-direction: column;
+                text-align: center;
+                margin: 40px 0;
+            }
+
+            .firstSection div {
+                width: 100%;
+            }
+
+            .leftSection {
+                font-size: 1.5rem;
+            }
+
+            .rightSection {
+                max-width: 280px;
+            }
+
+            .projectsSection,
+            .contactSection {
+                padding: 60px 5%;
+            }
+
+            .sectionTitle {
+                font-size: 2rem;
+            }
         }
-
-
-
     </style>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="left"><span style="color: #8f0202;">Roheet's Portfolio</span></div>
-            <div class="right">
-                <ul>
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#projects">Project</a></li>
-                <li><a href="#contact">Contact Me</a></li>
-                </ul>
 
-            </div>
-        </nav>
-    </header>
-    <main>
-        <section class="firstSection">
-            <div class="leftSection"> Hi, My name is <span style="color: #8f0202;"> Roheet Basukala</span> 
-                and I am passionate about 
-                <span id="element" style="color: #8f0202;"></span>
-            </div>
-            
-                <div class="rightSection">
-                <img src="images/bg.png" alt="">
-            </div>
-        </section>
-        <section class="projectsSection" id="projects">
+<body>
+
+<header>
+    <nav>
+        <div class="left"><span style="color:#8f0202;">Roheet's Portfolio</span></div>
+        <ul>
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#projects" class="nav-link">Project</a></li>
+            <li><a href="#contact" class="nav-link">Contact Me</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <section class="firstSection" id="home">
+        <div class="leftSection">
+            Hi, My name is <span style="color:#8f0202;">Roheet Basukala</span><br>
+            and I am passionate about<br>
+            <span id="element" style="color:#8f0202;"></span>
+        </div>
+
+        <div class="rightSection">
+            <img src="images/bg.png" alt="">
+        </div>
+    </section>
+
+    <section class="projectsSection" id="projects">
         <h2 class="sectionTitle">Project</h2>
 
         <div class="projectsGrid">
-
             <div class="projectCard">
                 <h3>Nepali POS Tagger</h3>
                 <p>BERT based Nepali POS tagger</p>
-                <a href="https://github.com/roheetbasu/Nepali-POS-tagger" target="_blank">
-                    View on GitHub →
-                </a>
+                <a href="https://github.com/roheetbasu/Nepali-POS-tagger" target="_blank">View on GitHub →</a>
             </div>
 
             <div class="projectCard">
                 <h3>Fake News Classification</h3>
                 <p>BERT based Fake news classification using dataset from kaggle</p>
-                <a href="https://github.com/roheetbasu/Fake-news-classification" target="_blank">
-                    View on GitHub →
-                </a>
+                <a href="https://github.com/roheetbasu/Fake-news-classification" target="_blank">View on GitHub →</a>
             </div>
 
             <div class="projectCard">
                 <h3>Building Transformer From Scratch</h3>
                 <p>Transformer built by using pytorch</p>
-                <a href="https://github.com/roheetbasu/Building-and-Training-Transformer-From-Scratch-/branches" target="_blank">
-                    View on GitHub →
-                </a>
+                <a href="https://github.com/roheetbasu/Building-and-Training-Transformer-From-Scratch-" target="_blank">View on GitHub →</a>
             </div>
-
         </div>
     </section>
+
     <section class="contactSection" id="contact">
         <h2 class="sectionTitle">Contact Me</h2>
 
@@ -263,20 +302,51 @@
             <div class="contactCard">
                 <h3>Social</h3>
                 <p>Find me on GitHub:</p>
-                <a href="https://github.com/roheetbasu" target="_blank">https://github.com/roheetbasu</a>
+                <a href="https://github.com/roheetbasu" target="_blank">github.com/roheetbasu</a>
             </div>
         </div>
     </section>
 
-    </main>
-    <script src="https://unpkg.com/typed.js@3.0.0/dist/typed.umd.js"></script>
-      <!-- Setup and start animation! -->
-    <script>
-        var typed = new Typed('#element', {
+</main>
+
+<script src="https://unpkg.com/typed.js@3.0.0/dist/typed.umd.js"></script>
+<script>
+    new Typed('#element', {
         strings: ['Learning AI', 'Building Projects'],
         typeSpeed: 50,
-        loop: true,
+        loop: true
+    });
+</script>
+<script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    function setActiveLink() {
+        let currentSection = "";
+
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            const sectionMiddle = rect.top + rect.height / 2;
+
+            if (
+                sectionMiddle >= 0 &&
+                sectionMiddle <= window.innerHeight
+            ) {
+                currentSection = section.getAttribute("id");
+            }
         });
-    </script>
+
+        navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${currentSection}`) {
+                link.classList.add("active");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", setActiveLink);
+    window.addEventListener("load", setActiveLink);
+</script>
+
 </body>
 </html>
