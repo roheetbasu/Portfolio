@@ -161,38 +161,77 @@
         }
 
         /* ------------------ CONTACT ------------------ */
-        .contactSection {
-            padding: 80px 10%;
+        .contactCard form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* spacing between fields */
+            align-items: center; /* center the form fields */
         }
 
-        .contactGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .contactCard {
-            background-color: #111;
-            padding: 25px;
-            border-radius: 12px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .contactCard:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(143, 2, 2, 0.4);
-        }
-
-        .contactCard h3 {
-            color: #8f0202;
-            margin-bottom: 10px;
-        }
-
-        .contactCard a {
-            text-decoration: none;
+        /* Inputs & textarea */
+        .contactCard input,
+        .contactCard textarea {
+            width: 70%;                /* control width (desktop default) */
+            max-width: 400px;          /* optional max width */
+            padding: 8px 10px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            outline: none;
+            background-color: #000;
             color: white;
-            border-bottom: 2px solid #8f0202;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
         }
+
+        /* Input height consistency */
+        .contactCard input {
+            height: 38px;
+        }
+
+        /* Textarea size */
+        .contactCard textarea {
+            resize: vertical;
+            min-height: 90px;
+            max-height: 160px;
+        }
+
+        /* Focus effect */
+        .contactCard input:focus,
+        .contactCard textarea:focus {
+            border-color: #8f0202;
+            box-shadow: 0 0 6px rgba(143, 2, 2, 0.5);
+        }
+
+        /* Button */
+        .contactCard button {
+            margin-top: 10px;
+            width: 70%;               /* match input width */
+            max-width: 400px;
+            padding: 10px;
+            background-color: #8f0202;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .contactCard button:hover {
+            background-color: #b30000;
+            transform: translateY(-1px);
+        }
+
+        /* Error text */
+        .error {
+            color: #ff4d4d;
+            font-size: 0.75rem;
+            margin-top: -5px;
+            width: 70%;            /* match input width */
+            text-align: left;
+        }
+
+
 
         /* ------------------ MOBILE ONLY (NO DESKTOP IMPACT) ------------------ */
         @media (max-width: 768px) {
@@ -234,7 +273,14 @@
             .sectionTitle {
                 font-size: 2rem;
             }
-        }
+            .contactCard input,
+            .contactCard textarea,
+            .contactCard button,
+            .error {
+                width: 90%;       /* a bit wider on tablets/mobile */
+                max-width: none;  /* let it shrink naturally */
+            }
+                    }
     </style>
 </head>
 
@@ -293,17 +339,34 @@
         <h2 class="sectionTitle">Contact Me</h2>
 
         <div class="contactGrid">
+
+            <!-- CONTACT FORM -->
             <div class="contactCard">
-                <h3>Email</h3>
-                <p>You can reach me at:</p>
-                <a href="mailto:roheetbasu@gmail.com">roheetbasu@gmail.com</a>
+
+            <form id="contactForm"
+                  action="https://formsubmit.co/roheetbasu@gmail.com"
+                  method="POST"
+                  onsubmit="return validateForm();">
+
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://roheetbasu.github.io/thankyou.html">
+
+                    <input type="text" id="name" name="name" placeholder="Your Name">
+                    <span class="error" id="nameError"></span>
+
+                    <input type="email" id="email" name="email" placeholder="Your Email">
+                    <span class="error" id="emailError"></span>
+
+                    <input type="text" id="subject" name="subject" placeholder="Subject">
+                    <span class="error" id="subjectError"></span>
+
+                    <textarea id="message" name="message" placeholder="Your Message" rows="5"></textarea>
+                    <span class="error" id="messageError"></span>
+
+                    <button type="submit">Send Email</button>
+                </form>
             </div>
 
-            <div class="contactCard">
-                <h3>Social</h3>
-                <p>Find me on GitHub:</p>
-                <a href="https://github.com/roheetbasu" target="_blank">github.com/roheetbasu</a>
-            </div>
         </div>
     </section>
 
@@ -346,6 +409,51 @@
 
     window.addEventListener("scroll", setActiveLink);
     window.addEventListener("load", setActiveLink);
+</script>
+<script>
+function validateForm() {
+    let isValid = true;
+
+    // Get values
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    // Clear previous errors
+    document.querySelectorAll(".error").forEach(e => e.textContent = "");
+
+    // Name validation
+    if (name === "") {
+        document.getElementById("nameError").textContent = "Name is required";
+        isValid = false;
+    }
+
+    // Email validation
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (email === "") {
+        document.getElementById("emailError").textContent = "Email is required";
+        isValid = false;
+    } else if (!email.match(emailPattern)) {
+        document.getElementById("emailError").textContent = "Enter a valid email";
+        isValid = false;
+    }
+
+    // Subject validation
+    if (subject === "") {
+        document.getElementById("subjectError").textContent = "Subject is required";
+        isValid = false;
+    }
+
+    // Message validation
+    if (message.length < 10) {
+        document.getElementById("messageError").textContent =
+            "Message must be at least 10 characters";
+        isValid = false;
+    }
+
+    return isValid; // true → submit, false → stop
+}
 </script>
 
 </body>
